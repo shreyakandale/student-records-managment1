@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ isEdit ? 'Edit Student' : '➕ Add Student' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" style="background-color: #ffe4c4;">
+  <div class="form-container">
+    <form (ngSubmit)="submitForm()">
+      <ion-item>
+        <ion-label position="floating">👤 Name</ion-label>
+        <ion-input [(ngModel)]="student.name" name="name" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">🎓 Roll Number</ion-label>
+        <ion-input [(ngModel)]="student.roll" name="roll" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">🏫 Department</ion-label>
+        <ion-input [(ngModel)]="student.department" name="department"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">📅 Year</ion-label>
+        <ion-input type="number" [(ngModel)]="student.year" name="year"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">📈 Attendance (%)</ion-label>
+        <ion-input type="number" [(ngModel)]="student.attendance" name="attendance"></ion-input>
+      </ion-item>
+
+      <ion-list>
+        <ion-list-header class="ion-text-center">📚 Subjects & Grades</ion-list-header>
+        <ion-item *ngFor="let subject of subjects; let i = index">
+          <ion-input [(ngModel)]="subjects[i]" name="subject-{{i}}" placeholder="Subject"></ion-input>
+          <ion-input [(ngModel)]="grades[i]" name="grade-{{i}}" placeholder="Grade" class="ion-margin-start"></ion-input>
+          <ion-button fill="clear" color="danger" (click)="removeSubject(i)">Remove</ion-button>
+        </ion-item>
+      </ion-list>
+
+      <div class="button-row">
+        <ion-button expand="block" color="tertiary" (click)="addSubject()">➕ Add Subject</ion-button>
+        <ion-button expand="block" color="success" type="submit">
+          {{ isEdit ? '✅ Update' : '➕ Add' }} Student
+        </ion-button>
+      </div>
+    </form>
+  </div>
+
+  <style>
+    .form-container {
+      max-width: 500px;
+      margin: auto;
+      background: #fffdf5;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    ion-item {
+      margin-top: 14px;
+      --background: #fef9f2;
+      --border-radius: 12px;
+    }
+
+    ion-input {
+      padding-left: 8px;
+    }
+
+    .button-row {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    ion-list-header {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    ion-button {
+      border-radius: 14px;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    ion-content {
+      --background: #ffe4c4; /* Fallback in case inline style fails */
+    }
+  </style>
+</ion-content>
