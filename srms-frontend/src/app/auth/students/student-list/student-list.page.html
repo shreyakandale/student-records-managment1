@@ -1,0 +1,117 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>🎓 Student Records</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/students/student-form" fill="outline" shape="round">
+        ➕ Add Student
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [fullscreen]="true" style="background-color: #f5f7fa;">
+  <!-- 🔍 Search -->
+  <ion-searchbar 
+    placeholder="Search by name or roll number" 
+    [(ngModel)]="searchQuery" 
+    (ionInput)="filterStudents()"
+    showCancelButton="focus">
+  </ion-searchbar>
+
+  <!-- 🧮 Filter Options -->
+  <ion-grid class="ion-padding-top">
+    <ion-row>
+      <ion-col>
+        <ion-select [(ngModel)]="selectedDepartment" (ionChange)="filterStudents()" placeholder="Department">
+          <ion-select-option *ngFor="let dept of departments">{{ dept }}</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col>
+        <ion-select [(ngModel)]="selectedYear" (ionChange)="filterStudents()" placeholder="Year">
+          <ion-select-option *ngFor="let y of years">{{ y }}</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- 📋 Student List -->
+  <ion-list lines="inset">
+    <ion-item *ngFor="let student of filteredStudents" button class="student-item">
+      <ion-avatar slot="start">
+        <ion-icon name="person-circle-outline" style="font-size: 2.4rem; color: #3880ff;"></ion-icon>
+      </ion-avatar>
+      <ion-label>
+        <h2 class="ion-text-capitalize">{{ student.name }} ({{ student.roll }})</h2>
+        <p>{{ student.department }} | Year {{ student.year }}</p>
+        <p><strong>Attendance:</strong> {{ student.attendance }}%</p>
+      </ion-label>
+
+      <ion-buttons slot="end">
+        <ion-button fill="clear" color="primary" (click)="editStudent(student.id!)">
+          <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" color="danger" (click)="deleteStudent(student.id!)">
+          <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" color="medium" (click)="downloadPDF(student.id!)">
+          <ion-icon name="document-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+
+  <style>
+    ion-content {
+      --background: #becee7;
+    }
+
+    ion-searchbar {
+      --background: #f3e1cd;
+      --box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+      border-radius: 12px;
+    }
+
+    ion-select {
+      width: 100%;
+      --placeholder-color: #666;
+      --background: #ffffff;
+      --border-radius: 12px;
+      --box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .student-item {
+      --background: #ffffff;
+      border-radius: 12px;
+      margin: 10px 0;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.07);
+      transition: transform 0.2s ease;
+    }
+
+    .student-item:hover {
+      transform: scale(1.01);
+    }
+
+    ion-label h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #222;
+    }
+
+    ion-label p {
+      margin: 2px 0;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    ion-button {
+      --padding-start: 6px;
+      --padding-end: 6px;
+    }
+
+    ion-avatar {
+      background-color: #e0ecff;
+      border-radius: 50%;
+      padding: 6px;
+    }
+  </style>
+</ion-content>
