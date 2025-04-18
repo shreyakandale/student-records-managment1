@@ -1,0 +1,115 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>📊 Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [fullscreen]="true" style="background-color: #f5f7fa;">
+  <!-- 🔢 Total Students -->
+  <ion-card class="dashboard-card">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="people-outline" class="icon"></ion-icon>
+        Total Students
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <h2 class="stat-value">{{ totalStudents }}</h2>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 🏫 Department Wise -->
+  <ion-card class="dashboard-card">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="school-outline" class="icon"></ion-icon>
+        Department Wise
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list lines="none">
+        <ion-item *ngFor="let dept of departmentStats">
+          <ion-label><strong>{{ dept.name }}</strong></ion-label>
+          <ion-badge color="primary" slot="end">{{ dept.count }}</ion-badge>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 🎓 Year Wise -->
+  <ion-card class="dashboard-card">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="calendar-outline" class="icon"></ion-icon>
+        Year Wise
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list lines="none">
+        <ion-item *ngFor="let year of yearStats">
+          <ion-label><strong>Year {{ year.year }}</strong></ion-label>
+          <ion-badge color="tertiary" slot="end">{{ year.count }}</ion-badge>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 📈 Average Attendance -->
+  <ion-card class="dashboard-card">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="stats-chart-outline" class="icon"></ion-icon>
+        Average Attendance
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <h2 class="stat-value">{{ averageAttendance | number:'1.0-2' }}%</h2>
+    </ion-card-content>
+  </ion-card>
+
+  <style>
+    ion-content {
+      --background: #0a0a0b;
+    }
+
+    .dashboard-card {
+      margin-bottom: 20px;
+      border-radius: 16px;
+      box-shadow: 0 8px 18px rgb(134, 189, 241);
+      background: linear-gradient(to bottom right, #f8f5f5, #edeceb);
+    }
+
+    ion-card-title {
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .icon {
+      font-size: 1.5rem;
+      margin-right: 8px;
+      color: #0077b6;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      /* font-weight: bold; */
+      text-align: center;
+      color: #222;
+    }
+
+    ion-badge {
+      font-size: 0.9rem;
+      padding: 6px 12px;
+      border-radius: 12px;
+    }
+
+    ion-item {
+      --background: transparent;
+      --padding-start: 0;
+      --inner-padding-end: 0;
+    }
+  </style>
+</ion-content>
