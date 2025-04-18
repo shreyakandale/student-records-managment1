@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar class="login-header">
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [fullscreen]="true">
+  <div class="login-container" style="background-color: #e8a3a3;">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Welcome back</ion-card-title>
+        <ion-card-subtitle class="ion-text-center" style="color: #222;">Please login to your account</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form (submit)="login()">
+          <ion-item>
+            <ion-icon name="mail-outline" slot="start"></ion-icon>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input [(ngModel)]="email" name="email" type="email" placeholder="example@email.com" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input [(ngModel)]="password" name="password" type="password" placeholder="••••••••" required></ion-input>
+          </ion-item>
+
+          <ion-button expand="full" type="submit" class="ion-margin-top" >
+            Login
+          </ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <style>
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    ion-card {
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      border-radius: 20px;
+      background: linear-gradient(to bottom right, #b15656, #dac2bc);
+      padding: 20px;
+    }
+
+    ion-card-title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #222;
+    }
+
+    ion-card-subtitle {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    ion-item {
+      margin-top: 15px;
+      --background: #f9f9f9;
+      --border-radius: 12px;
+    }
+
+    ion-input {
+      padding-left: 8px;
+    }
+
+    ion-button {
+      border-radius: 12px;
+      font-size: 1.1rem;
+    }
+    .login-header{
+        background-color: #b15656;
+    }
+    .ion-margin-top{
+        background-color: brown;
+    }
+  </style>
+</ion-content>
