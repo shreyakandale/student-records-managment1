@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [fullscreen]="true" >
+  <div class="register-container" style="background-color: cadetblue;">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center" style="background-color: rgb(159, 203, 189);">Create Account 📝 </ion-card-title>
+        <ion-card-subtitle class="ion-text-center">Join us today!</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form (submit)="register()">
+
+          <ion-item>
+            <ion-icon name="mail-outline" slot="start"></ion-icon>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input [(ngModel)]="email" name="email" type="email" placeholder="you@example.com" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input [(ngModel)]="password" name="password" type="password" placeholder="••••••••" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+            <ion-label>Role</ion-label>
+            <ion-select [(ngModel)]="role" name="role" interface="popover" placeholder="Select role" required>
+              <ion-select-option value="admin">Admin</ion-select-option>
+              <ion-select-option value="faculty">Faculty</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-button expand="full" type="submit" color="success" class="ion-margin-top">
+            Register
+          </ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <style>
+    .register-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    ion-card {
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      border-radius: 20px;
+      background: linear-gradient(to bottom right, #ffffff, #f0f4f8);
+      padding: 20px;
+    }
+
+    ion-card-title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #222;
+    }
+
+    ion-card-subtitle {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    ion-item {
+      margin-top: 15px;
+      --background: #f9f9f9;
+      --border-radius: 12px;
+    }
+
+    ion-input, ion-select {
+      padding-left: 8px;
+    }
+
+    ion-button {
+      border-radius: 12px;
+      font-size: 1.1rem;
+    }
+  </style>
+</ion-content>
