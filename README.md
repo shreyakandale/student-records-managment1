@@ -1,4 +1,4 @@
-# student-records-managment1
+# Internship_Eywa_student-records-managment1
 1. Install Node.js and npm
 Download and install from: https://nodejs.org
 
@@ -15,7 +15,7 @@ npm install
 5.Start the backend server:
 npm start
 
-6. Run Frontend (arms-frontend)
+6. Run Frontend (srms-frontend)
 Open a new terminal.
 Go to the frontend folder:
 cd srms-frontend
